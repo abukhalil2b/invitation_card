@@ -1,0 +1,35 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvitationController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::middleware('auth')->get('/dashboard', [InvitationController::class, 'dashboard'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/invitations/create', [InvitationController::class, 'create'])->name('invitations.create');
+    Route::post('/invitations', [InvitationController::class, 'store'])->name('invitations.store');
+
+    // This route is used when the QR code is scanned for validation.
+    Route::get('/invitations/validate/{token}', [InvitationController::class, 'validateInvitation'])->name('invitation.validate');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', function () {
+        abort(404);
+    })->name('profile.edit');
+
+    Route::patch('/profile', function () {
+        abort(404);
+    })->name('profile.update');
+
+    Route::delete('/profile', function () {
+        abort(404);
+    })->name('profile.destroy');
+});
+require __DIR__ . '/auth.php';

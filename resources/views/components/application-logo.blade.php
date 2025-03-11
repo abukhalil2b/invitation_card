@@ -1,0 +1,1 @@
+<img src="{{ asset('invitaion_card.png') }}" alt="invitaion_card" width="60">
