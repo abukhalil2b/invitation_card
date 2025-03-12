@@ -104,7 +104,8 @@ class InvitationController extends Controller
 
         // Update invitation fields
         $invitation->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'used_at'=>NULL
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Invitation updated successfully!');
