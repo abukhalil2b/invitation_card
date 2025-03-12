@@ -14,9 +14,9 @@ class InvitationController extends Controller
     {
         $invitations = Invitation::all();
 
-        $totalRemain = $invitations->whereNull('status')->count();
+        $totalRemain = $invitations->whereNull('used_at')->count();
 
-        $totalPresent = $invitations->whereNotNull('status')->count();
+        $totalPresent = $invitations->whereNotNull('used_at')->count();
 
         return view('dashboard', compact('invitations', 'totalRemain', 'totalPresent'));
     }
@@ -24,7 +24,11 @@ class InvitationController extends Controller
     // Display a form for the admin to create an invitation.
     public function create()
     {
-        return view('invitations.create');
+        if(auth()->id() == 1){
+
+            return view('invitations.create');
+        }
+        abort(403);
     }
 
     // Store the invitation and generate a QR code.
@@ -73,5 +77,45 @@ class InvitationController extends Controller
         $invitation->update(['used_at' => now()]);
 
         return view('invitations.valid', compact('invitation'));
+    }
+
+    // Show  invitation
+    public function show(Invitation $invitation)
+    {
+        $url = route('invitation.validate', ['token' => $invitation->token]);
+
+        $qrCode = QrCode::size(200)->generate($url);
+
+        return view('invitations.show', compact('invitation', 'qrCode'));
+    }
+
+    // Show form to edit invitation
+    public function edit(Invitation $invitation)
+    {
+        return view('invitations.edit', compact('invitation'));
+    }
+
+    // Update invitation details
+    public function update(Request $request, Invitation $invitation)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        // Update invitation fields
+        $invitation->update([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Invitation updated successfully!');
+    }
+
+    // Delete invitation
+    public function destroy(Invitation $invitation)
+    {
+        // Delete invitation
+        $invitation->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Invitation deleted successfully!');
     }
 }

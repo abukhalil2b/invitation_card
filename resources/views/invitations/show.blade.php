@@ -43,23 +43,15 @@
                                   d="M5.121 17.804A4 4 0 019 15h6a4 4 0 013.879 2.804M16 11a4 4 0 10-8 0m4 6v4m-3-4h6"/>
                         </svg>
                     </div>
-                    <h1 class="text-2xl font-semibold">Invitation for {{ $invitation->name }}</h1>
+                    <h1 class="text-2xl font-semibold">{{ $invitation->name }}</h1>
                 </div>
 
-                <p class="text-gray-700 mb-4">Scan this QR code to validate the invitation:</p>
+                <p class="text-gray-700 mb-4"></p>
                 <div class="flex justify-center mb-4">
                     <div class="border-4 border-gray-300 rounded-lg p-4">
                         {!! $qrCode !!}
                     </div>
                 </div>
-
-                <p class="text-gray-700 mb-4">
-                    Alternatively, use this link:
-                    <a href="{{ route('invitation.validate', ['token' => $invitation->token]) }}" 
-                       class="text-blue-500 underline break-all">
-                        {{ route('invitation.validate', ['token' => $invitation->token]) }}
-                    </a>
-                </p>
 
                 <div class="flex justify-end">
                     <button 

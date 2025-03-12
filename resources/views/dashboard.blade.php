@@ -18,7 +18,7 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-sm">Total Remain Invitations</p>
+                        <p class="text-gray-500 text-sm">Remain Invitations</p>
                         <p class="text-2xl font-semibold">{{ $totalRemain }}</p>
                     </div>
                 </div>
@@ -47,6 +47,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Person Name</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Token (For Reference)</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -64,6 +65,27 @@
                                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                 Not Used
                                             </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @if(auth()->id() == 1)
+                                         <!-- show Button -->
+                                         <a href="{{ route('invitations.show', $invitation->id) }}" class="text-xs px-2 py-1 bg-green-500 text-white rounded-md hover:bg-green-600">
+                                            show
+                                        </a>
+                                        <!-- Edit Button -->
+                                        <a href="{{ route('invitations.edit', $invitation->id) }}" class="text-xs px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 ml-2">
+                                            Edit
+                                        </a>
+
+                                        <!-- Delete Button -->
+                                        <form method="POST" action="{{ route('invitations.destroy', $invitation->id) }}" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this invitation?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-xs px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 ml-2">
+                                                Delete
+                                            </button>
+                                        </form>
                                         @endif
                                     </td>
                                 </tr>
