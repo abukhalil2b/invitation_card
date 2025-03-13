@@ -45,6 +45,7 @@
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Person Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recipient Phone</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
@@ -54,6 +55,7 @@
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $invitation->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $invitation->recipient_phone }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if ($invitation->used_at)
                                             <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">

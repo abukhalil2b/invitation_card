@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvitationController;
 
@@ -17,7 +16,9 @@ Route::middleware('auth')->group(function () {
 
     // Edit an invitation
     Route::get('/invitations/{invitation}/show', [InvitationController::class, 'show'])->name('invitations.show');
+    
     Route::get('/invitations/{invitation}/edit', [InvitationController::class, 'edit'])->name('invitations.edit');
+    
     Route::patch('/invitations/{invitation}', [InvitationController::class, 'update'])->name('invitations.update');
 
     // Delete an invitation

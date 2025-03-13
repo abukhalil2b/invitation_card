@@ -35,9 +35,8 @@ class InvitationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
-            // Optionally include email validation if needed:
-            // 'email' => 'nullable|email'
+            'name'             => 'required|string|max:255',
+            'recipient_phone'  => 'required|digits:8',
         ]);
 
         // Generate a unique token
@@ -45,9 +44,9 @@ class InvitationController extends Controller
 
         // Create the invitation record
         $invitation = Invitation::create([
+            'recipient_phone'=>$request->recipient_phone,
             'name'  => $request->name,
             'token' => $token,
-            // 'email' => $request->email,  // if you collect an email address
         ]);
 
         // Create a URL that will be encoded in the QR code.
@@ -105,6 +104,7 @@ class InvitationController extends Controller
         // Update invitation fields
         $invitation->update([
             'name' => $request->name,
+            'recipient_phone' => $request->recipient_phone,
             'used_at'=>NULL
         ]);
 
