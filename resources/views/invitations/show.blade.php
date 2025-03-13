@@ -97,7 +97,7 @@
             );
 
             // Create WhatsApp share link
-            const whatsappUrl = `https://wa.me/00968${phoneNumber}?text=${message}`;
+            const whatsappUrl = `https://wa.me/+968${phoneNumber}?text=${message}`;
             
             // Open WhatsApp in new tab
             window.open(whatsappUrl, '_blank');
