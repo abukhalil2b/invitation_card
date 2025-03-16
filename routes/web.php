@@ -15,6 +15,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/invitations', [InvitationController::class, 'store'])->name('invitations.store');
 
     // Edit an invitation
+    Route::get('/invitations/index', [InvitationController::class, 'index'])->name('invitations.index');
+
     Route::get('/invitations/{invitation}/show', [InvitationController::class, 'show'])->name('invitations.show');
     
     Route::get('/invitations/{invitation}/edit', [InvitationController::class, 'edit'])->name('invitations.edit');

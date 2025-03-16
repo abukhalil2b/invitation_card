@@ -24,7 +24,7 @@ class InvitationController extends Controller
     // Display a form for the admin to create an invitation.
     public function create()
     {
-        if(auth()->id() == 1){
+        if (auth()->id() == 1) {
 
             return view('invitations.create');
         }
@@ -44,7 +44,7 @@ class InvitationController extends Controller
 
         // Create the invitation record
         $invitation = Invitation::create([
-            'recipient_phone'=>$request->recipient_phone,
+            'recipient_phone' => $request->recipient_phone,
             'name'  => $request->name,
             'token' => $token,
         ]);
@@ -78,6 +78,19 @@ class InvitationController extends Controller
         return view('invitations.valid', compact('invitation'));
     }
 
+    public function index()
+    {
+
+        $invitations = Invitation::limit(300)->get()->map(function ($inv) {
+            return [
+                'name' => $inv->name,
+                'qr_code' => QrCode::size(200)->generate(route('invitation.validate', ['token' => $inv->token]))
+            ];
+        });
+
+        return view('invitations.index', compact('invitations'));
+    }
+
     // Show  invitation
     public function show(Invitation $invitation)
     {
@@ -105,7 +118,7 @@ class InvitationController extends Controller
         $invitation->update([
             'name' => $request->name,
             'recipient_phone' => $request->recipient_phone,
-            'used_at'=>NULL
+            'used_at' => NULL
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Invitation updated successfully!');

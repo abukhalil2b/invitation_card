@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Invitation') }}
+            {{ __('تعديل الدعوة') }}
         </h2>
     </x-slot>
 
@@ -11,18 +11,19 @@
                 <form method="POST" action="{{ route('invitations.update', $invitation->id) }}">
                     @csrf
                     @method('PATCH')
-                    <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <div class="mb-4" dir="ltr">
+                        <label for="name" class="block text-sm font-medium text-gray-700">الاسم</label>
                         <input type="text" id="name" name="name" value="{{ old('name', $invitation->name) }}" 
                                class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
                     </div>
-                    <!-- Phone Input Group -->
+
+                    <!-- مجموعة إدخال رقم الهاتف -->
                     <div>
-                        <label for="recipient_phone" class="block text-sm font-medium text-gray-700">Phone:(8 Digits)</label>
-                        <div class="flex mt-1">
+                        <label for="recipient_phone" class="block text-sm font-medium text-gray-700">رقم الهاتف (8 أرقام):</label>
+                        <div class="flex mt-1" dir="ltr">
                             <span
                                 class="inline-flex items-center px-3 text-gray-500 bg-gray-200 border border-gray-300 rounded-l-md">
-                                <!-- Phone SVG icon -->
+                                <!-- أيقونة SVG للهاتف -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,16 +34,17 @@
                                 class="inline-flex items-center px-3 text-gray-500 bg-gray-200 border border-gray-300">00968</span>
                             <input type="number" name="recipient_phone" id="recipient_phone" value="{{ old('recipient_phone', $invitation->recipient_phone) }}" 
                                 class="flex-1 block w-full px-3 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="Enter phone number (country code will be added automatically)"
-                                pattern="\d{8}" title="Please enter exactly 8 digits" required>
+                                placeholder="أدخل رقم الهاتف (سيتم إضافة رمز الدولة تلقائياً)"
+                                pattern="\d{8}" title="يرجى إدخال 8 أرقام بالضبط" required>
                         </div>
                     </div>
-                    <div class="mt-2 flex justify-end space-x-4">
+
+                    <div class="mt-2 flex justify-end space-x-4" dir="ltr">
                         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                            Save Changes
+                            حفظ التعديلات
                         </button>
                         <a href="{{ route('dashboard') }}" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
-                            Cancel
+                            إلغاء
                         </a>
                     </div>
                 </form>
