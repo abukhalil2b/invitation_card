@@ -120,7 +120,7 @@
             const phoneNumber = "91171747"; // Phone number without country code; adjust if needed.
             const invitationName = "{{ $invitation->name }}";
             const message = encodeURIComponent(
-                `دعوة\nبارك الله في قلبين على الحب الحلال قد إلتقو وأكرم الله شملاً بالمودة قد إلتأم\nيشرفنا ويسعدنا\nلدعوتكم لحضور حفل زفاف\n${invitationName}\nوبمشيئة الله تعالى\nيوم الاثنين (٧/٤/٢٠٢٥)\nقاعة الحزم / السيب / المعبيلة\nالساعه: ٨:٠٠ pm\nممنوع التصوير\nممنوع إصطحاب الأطفال\nملاحظة مهمة: الرجاء إبراز الباركود قبل الدخول للقاعة\nالموقع: https://maps.app.goo.gl/2Xn223QxBuGwLgcN7?g_st=iw`
+                `دعوة\nبارك الله في قلبين على الحب الحلال قد إلتقو وأكرم الله شملاً بالمودة قد إلتأم\nيشرفنا ويسعدنا\nلدعوتكم لحضور حفل زفاف\nمحمد&أفراح\nوبمشيئة الله تعالى\nيوم الاثنين (٧/٤/٢٠٢٥)\nقاعة الحزم / السيب / المعبيلة\nالساعه: ٨:٠٠ pm\nممنوع التصوير\nممنوع إصطحاب الأطفال\nملاحظة مهمة: الرجاء إبراز الباركود قبل الدخول للقاعة\nالموقع: https://maps.app.goo.gl/2Xn223QxBuGwLgcN7?g_st=iw`
             );
 
             // Create WhatsApp share link (ensure country code +968 is added if applicable)
